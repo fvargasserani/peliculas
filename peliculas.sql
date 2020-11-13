@@ -52,12 +52,18 @@ WHERE ano_estreno >= 1990 AND ano_estreno <= 1999
 ORDER BY peliculas ASC;   
 
 -- Listar el reparto de las películas lanzadas el año 2001
-SELECT actor
-FROM (
-    SELECT actor 
-    FROM repartos
-    LEFT JOIN peliculas
-    ON id = id_reparto 
-    WHERE ano_estreno = 2001) AS x
-GROUP BY x;
+SELECT actor 
+FROM repartos
+LEFT JOIN peliculas
+ON id = id_reparto   
+WHERE ano_estreno = 2001
+GROUP BY actor;
 
+-- Listar los actores de la película más nueva
+SELECT actor 
+FROM ( SELECT id
+    FROM peliculas
+    ORDER BY ano_estreno DESC
+    LIMIT 1) AS x
+LEFT JOIN repartos
+ON x.id = id_reparto;
