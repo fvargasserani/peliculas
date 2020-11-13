@@ -28,3 +28,10 @@ SELECT pelicula FROM peliculas INNER JOIN repartos ON id=id_reparto AND actor='H
 -- Listar los 10 directores mas populares, indicando su nombre y cuántas películas aparecen en el top 100
 SELECT director, COUNT(id<=100) FROM peliculas GROUP BY director LIMIT 10;
 
+-- Indicar cuantos actores distintos hay
+SELECT COUNT(x) FROM (
+    SELECT COUNT(actor)
+    FROM repartos 
+    GROUP BY actor) as x;
+    
+
