@@ -20,18 +20,34 @@ FOREIGN KEY (id_reparto) REFERENCES peliculas (id));
 \copy repartos FROM 'reparto.csv' csv;
 
 -- Listar todos los actores que aparecen en la película "Titanic", indicando el título de la película, año de estreno, director y todo el reparto. 
-SELECT pelicula, ano_estreno, director, actor FROM peliculas INNER JOIN repartos ON id=id_reparto AND pelicula='Titanic';
+SELECT pelicula, ano_estreno, director, actor 
+FROM peliculas 
+INNER JOIN repartos 
+ON id=id_reparto 
+AND pelicula='Titanic';
 
 -- Listar los titulos de las películas donde actúe Harrison Ford
-SELECT pelicula FROM peliculas INNER JOIN repartos ON id=id_reparto AND actor='Harrison Ford';
+SELECT pelicula 
+FROM peliculas 
+INNER JOIN repartos 
+ON id=id_reparto 
+AND actor='Harrison Ford';
 
 -- Listar los 10 directores mas populares, indicando su nombre y cuántas películas aparecen en el top 100
-SELECT director, COUNT(id<=100) FROM peliculas GROUP BY director LIMIT 10;
+SELECT director, COUNT(id<=100) 
+FROM peliculas 
+GROUP BY director 
+LIMIT 10;
 
 -- Indicar cuantos actores distintos hay
 SELECT COUNT(x) FROM (
     SELECT COUNT(actor)
     FROM repartos 
-    GROUP BY actor) as x;
-    
+    GROUP BY actor) AS x;
+
+-- Indicar las películas estrenadas entre los años 1990 y 1999 (ambos incluidos) ordenadas por título de manera ascendente.
+SELECT peliculas 
+FROM peliculas 
+WHERE ano_estreno > 1990 AND ano_estreno < 1999
+ORDER BY peliculas ASC;   
 
