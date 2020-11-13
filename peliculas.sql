@@ -24,3 +24,7 @@ SELECT pelicula, ano_estreno, director, actor FROM peliculas INNER JOIN repartos
 
 -- Listar los titulos de las películas donde actúe Harrison Ford
 SELECT pelicula FROM peliculas INNER JOIN repartos ON id=id_reparto AND actor='Harrison Ford';
+
+-- Listar los 10 directores mas populares, indicando su nombre y cuántas películas aparecen en el top 100
+SELECT director, COUNT(id<=100) FROM peliculas GROUP BY director LIMIT 10;
+
