@@ -19,4 +19,8 @@ FOREIGN KEY (id_reparto) REFERENCES peliculas (id));
 \copy peliculas FROM 'peliculas.csv' csv header;
 \copy repartos FROM 'reparto.csv' csv;
 
+-- Listar todos los actores que aparecen en la película "Titanic", indicando el título de la película, año de estreno, director y todo el reparto. 
+SELECT pelicula, ano_estreno, director, actor FROM peliculas INNER JOIN repartos ON id=id_reparto AND pelicula='Titanic';
 
+-- Listar los titulos de las películas donde actúe Harrison Ford
+SELECT pelicula FROM peliculas INNER JOIN repartos ON id=id_reparto AND actor='Harrison Ford';
